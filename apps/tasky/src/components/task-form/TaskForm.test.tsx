@@ -3,7 +3,6 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { TaskForm } from './TaskForm';
 import { Task } from '../../types/Task';
 
-// Mock task for testing
 const mockTask: Task = {
   id: '1',
   title: 'Test Task',
@@ -15,7 +14,6 @@ const mockTask: Task = {
 };
 
 describe('TaskForm Component', () => {
-  // Setup mock functions
   const onSubmitMock = vi.fn();
   const onCancelMock = vi.fn();
 
@@ -35,7 +33,7 @@ describe('TaskForm Component', () => {
     );
 
     // Check that the form title is correct
-    expect(screen.getByText('Create New Task')).toBeInTheDocument();
+    expect(screen.getByText('Create New Task')).toBeVisible();
 
     // Check that inputs have default values
     expect(screen.getByLabelText('Title')).toHaveValue('');
@@ -44,10 +42,10 @@ describe('TaskForm Component', () => {
     expect(screen.getByLabelText('Status')).toHaveValue('todo');
 
     // Check that create button is present
-    expect(screen.getByText('Create Task')).toBeInTheDocument();
+    expect(screen.getByText('Create Task')).toBeVisible();
 
     // Check that cancel button is not present when creating
-    expect(screen.queryByText('Cancel')).not.toBeInTheDocument();
+    expect(screen.queryByText('Cancel')).not.toBeVisible();
   });
 
   it('renders edit form correctly when editing task is provided', () => {
@@ -60,7 +58,7 @@ describe('TaskForm Component', () => {
     );
 
     // Check that the form title is correct
-    expect(screen.getByText('Edit Task')).toBeInTheDocument();
+    expect(screen.getByText('Edit Task')).toBeVisible();
 
     // Check that inputs are populated with task values
     expect(screen.getByLabelText('Title')).toHaveValue(mockTask.title);
@@ -71,10 +69,10 @@ describe('TaskForm Component', () => {
     expect(screen.getByLabelText('Status')).toHaveValue(mockTask.status);
 
     // Check that update button is present
-    expect(screen.getByText('Update Task')).toBeInTheDocument();
+    expect(screen.getByText('Update Task')).toBeVisible();
 
     // Check that cancel button is present when editing
-    expect(screen.getByText('Cancel')).toBeInTheDocument();
+    expect(screen.getByText('Cancel')).toBeVisible();
   });
 
   it('calls onSubmit with correct data when creating a new task', async () => {

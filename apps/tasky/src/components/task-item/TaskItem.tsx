@@ -20,7 +20,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
     onStatusChange(task.id, newStatus);
   };
 
-  // Format dates
+
   const formatDate = (date: Date) => {
     return new Date(date).toLocaleDateString();
   };

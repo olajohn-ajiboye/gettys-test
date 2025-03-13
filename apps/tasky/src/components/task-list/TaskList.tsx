@@ -214,7 +214,7 @@ export const TaskList: React.FC<TaskListProps> = ({
 
         <div className='filter-controls'>
           <div className='filter-group'>
-            <label htmlFor='status-filter'>Status:</label>
+            <label htmlFor='status-filter' style={ {color: "white"}}>Status:</label>
             <select
               id='status-filter'
               value={statusFilter}
@@ -231,7 +231,7 @@ export const TaskList: React.FC<TaskListProps> = ({
           </div>
 
           <div className='filter-group'>
-            <label htmlFor='priority-filter'>Priority:</label>
+            <label htmlFor='priority-filter' style={ {color: "white"}}>Priority:</label>
             <select
               id='priority-filter'
               value={priorityFilter}

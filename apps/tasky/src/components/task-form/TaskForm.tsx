@@ -19,7 +19,6 @@ export const TaskForm: React.FC<TaskFormProps> = ({
   const [priority, setPriority] = useState<Task['priority']>('medium');
   const [status, setStatus] = useState<Task['status']>('todo');
 
-  // Update form when editing task changes
   useEffect(() => {
     if (editingTask) {
       setTitle(editingTask.title);

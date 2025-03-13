@@ -6,7 +6,7 @@ import { Task } from '../../types/Task';
 import {ConfirmationDialogProps} from './ConfirmationDialog'
 import { TaskEditModalProps } from './TaskEditModal';
 
-// Mock ConfirmationDialog and TaskEditModal components
+
 vi.mock('./ConfirmationDialog', () => ({
   ConfirmationDialog: ({
     isOpen,
@@ -42,7 +42,7 @@ vi.mock('./TaskEditModal', () => ({
   ),
 }));
 
-// Sample tasks for testing
+
 const mockTasks: Task[] = [
   {
     id: '1',
@@ -101,7 +101,7 @@ describe('TaskList Component', () => {
     expect(screen.getByText('Learn TypeScript')).toBeInTheDocument();
     expect(screen.getByText('Exercise')).toBeInTheDocument();
 
-    // Check that the table header is complete
+
     expect(screen.getByText('Title')).toBeInTheDocument();
     expect(screen.getByText('Description')).toBeInTheDocument();
     expect(screen.getByText('Status')).toBeInTheDocument();
@@ -122,7 +122,7 @@ describe('TaskList Component', () => {
     );
 
     // Initially all tasks should be visible
-    expect(screen.getAllByRole('row')).toHaveLength(4); // 3 tasks + header row
+    expect(screen.getAllByRole('row')).toHaveLength(4);
 
     // Filter by 'todo' status
     const statusFilter = screen.getByLabelText('Status:');
@@ -166,16 +166,14 @@ describe('TaskList Component', () => {
       />
     );
 
-    // Set status filter
     const statusFilter = screen.getByLabelText('Status:');
     fireEvent.change(statusFilter, { target: { value: 'in-progress' } });
 
-    // Set priority filter
     const priorityFilter = screen.getByLabelText('Priority:');
     fireEvent.change(priorityFilter, { target: { value: 'medium' } });
 
     // Should only show tasks with both filters matching
-    expect(screen.getAllByRole('row')).toHaveLength(2); // 1 task + header row
+    expect(screen.getAllByRole('row')).toHaveLength(2);
     expect(screen.queryByText('Complete project')).not.toBeInTheDocument();
     expect(screen.getByText('Learn TypeScript')).toBeInTheDocument();
     expect(screen.queryByText('Exercise')).not.toBeInTheDocument();
@@ -191,12 +189,10 @@ describe('TaskList Component', () => {
       />
     );
 
-    // Search for tasks containing "type"
     const searchInput = screen.getByPlaceholderText('Search tasks...');
     fireEvent.change(searchInput, { target: { value: 'type' } });
 
-    // Should only show tasks with "type" in title or description
-    expect(screen.getAllByRole('row')).toHaveLength(2); // 1 task + header row
+    expect(screen.getAllByRole('row')).toHaveLength(2);
     expect(screen.queryByText('Complete project')).not.toBeInTheDocument();
     expect(screen.getByText('Learn TypeScript')).toBeInTheDocument();
     expect(screen.queryByText('Exercise')).not.toBeInTheDocument();
@@ -272,18 +268,14 @@ describe('TaskList Component', () => {
       />
     );
 
-    // Click delete button
     const deleteButtons = screen.getAllByText('Delete');
     fireEvent.click(deleteButtons[0]);
 
-    // Click confirm in dialog
     const confirmButton = screen.getByTestId('confirm-delete');
     fireEvent.click(confirmButton);
 
-    // Check that onDelete was called with the correct task ID
     expect(onDeleteMock).toHaveBeenCalledWith('1');
 
-    // Dialog should be closed
     expect(screen.queryByTestId('confirmation-dialog')).not.toBeInTheDocument();
   });
 
@@ -297,18 +289,13 @@ describe('TaskList Component', () => {
       />
     );
 
-    // Click delete button
     const deleteButtons = screen.getAllByText('Delete');
     fireEvent.click(deleteButtons[0]);
 
-    // Click cancel in dialog
     const cancelButton = screen.getByTestId('cancel-delete');
     fireEvent.click(cancelButton);
 
-    // Check that onDelete was not called
     expect(onDeleteMock).not.toHaveBeenCalled();
-
-    // Dialog should be closed
     expect(screen.queryByTestId('confirmation-dialog')).not.toBeInTheDocument();
   });
 
@@ -358,7 +345,6 @@ describe('TaskList Component', () => {
       })
     );
 
-    // Modal should be closed
     expect(screen.queryByTestId('edit-modal')).not.toBeInTheDocument();
   });
 
@@ -372,18 +358,13 @@ describe('TaskList Component', () => {
       />
     );
 
-    // Click edit button
     const editButtons = screen.getAllByText('Edit');
     fireEvent.click(editButtons[0]);
 
-    // Close without saving
     const closeButton = screen.getByTestId('close-edit');
     fireEvent.click(closeButton);
 
-    // Check that onEdit was not called
     expect(onEditMock).not.toHaveBeenCalled();
-
-    // Modal should be closed
     expect(screen.queryByTestId('edit-modal')).not.toBeInTheDocument();
   });
 

@@ -29,8 +29,6 @@ const App: React.FC = () => {
    
   }, []);
 
-    console.log(tasks);
-
   const handleCreateTask = async (
     taskData: Omit<Task, 'id' | 'createdAt' | 'updatedAt'>
   ) => {

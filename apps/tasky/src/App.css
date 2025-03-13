@@ -5,6 +5,7 @@
   text-align: center;
 
 }
+
 .app-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -21,7 +22,7 @@ header {
 }
 
 header h1 {
-  color: #333;
+  color: white;
   font-size: 2.5rem;
 }
 
@@ -38,4 +39,36 @@ header h1 {
   padding: 2rem;
   font-size: 1.2rem;
   color: #757575;
+}
+
+.edit-button,
+.delete-button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.edit-button {
+  background-color: #2196f3;
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: #1976d2;
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
+}
+
+.task-dates {
+  font-size: 0.8rem;
 }

@@ -33,7 +33,6 @@ export const TaskEditModal: React.FC<TaskEditModalProps> = ({
     return () => document.removeEventListener('click', handleOutsideClick);
   }, [onClose]);
 
-  // Handle escape key to close modal
   useEffect(() => {
     const handleEscKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
